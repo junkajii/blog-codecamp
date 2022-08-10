@@ -11,7 +11,7 @@
     /* VARIABLES */
     :root{      
       --light-color: #fff;
-      --light-color-alt: #afb6cd;
+      --light-color-alt: #b1b7ce;
       --primary-background-color: #131417;
       --secondary-background-color: #252830;
       --hover-light-color: var(--light-color);
@@ -81,13 +81,13 @@
       display: inline-block;
       width: var(--font-size-md);
       height: var(--font-size-md);
-      filter: invert(.9);
+      filter: invert(1) brightness(.7);
     }
-    .icon-sun { background: url('./img/sun.svg') no-repeat top left; }
-    .icon-moon { background: url('./img/moon.svg') no-repeat top left; }
-    .icon-search { background: url('./img/search.svg') no-repeat top left; }
-    .icon-bars { background: url('./img/bars.svg') no-repeat top left; }
-    .icon-xmark { background: url('./img/xmark.svg') no-repeat top left; }
+    .i-sun { background: url('./img/sun.svg') no-repeat top left; }
+    .i-moon { background: url('./img/moon.svg') no-repeat top left; }
+    .i-search { background: url('./img/search.svg') no-repeat top left; }
+    .i-bars { background: url('./img/bars.svg') no-repeat top left; }
+    .i-xmark { background: url('./img/xmark.svg') no-repeat top left; }
 
     /* THEME COLOR CHANGE */
     body.light-theme {
@@ -118,13 +118,110 @@
 
     /* HEADER */
     .header {
-
+      background-color: var(--secondary-background-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
     }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 1.5rem;
+    }
+
+    .logo {
+      font-size: var(--font-size-md);
+      color: var(--light-color);
+    }
+
+    .menu {
+      position: absolute;
+      top: 8.5rem;
+      right: 1.5rem;
+      width: 23rem;
+      padding: 1.5rem;
+      background-color: var(--secondary-background-color);
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity .25s ease-in;
+    }
+
+    .list {
+      display: flex;
+      align-items: center;
+      gap: var(--gap);
+    }
+
+    .menu > .list {
+      flex-direction: column;
+    }
+
+    .list-link.current {
+      color: var(--light-color);
+    }
+
+    .close-menu-icon {
+      display: none;
+    }
+
+    .btn {
+      cursor: pointer;
+    }
+
+    .list-link:hover {
+      color: var(--light-color);
+    }
+
+    .btn:hover, .btn:hover span {
+      filter: brightness(100);
+    }
+
+    .i-moon {
+      display: none;
+    }
+
+    .light-theme .i-sun {
+      display: none;
+    }
+
+    .light-theme .i-moon {
+      display: block;
+    }
+    /* HEADER JAVASCRIPT STYLES */
+    .header.activated {
+      box-shadow: 0 1rem .5rem var(--transparent-light-color);
+    }
+
+    .menu.activated {
+      box-shadow: 0 1rem .5rem var(--transparent-light-color);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .menu-toggle-icon.activated .open-menu-icon {
+      display: none;
+    }
+
+    .menu-toggle-icon.activated .close-menu-icon {
+      display: block;
+    }
+
+    /* SEARCH */
+    /* FORM JAVASCRIPT STYLES */
+    /* FEATURED ARTICLES */
+    /* FEATURED ARTICLES SIDEBAR*/
+    /* QUICK READ */
+    /* QUICK READ SWIPER */
+    /* OLDER POSTS */
 
   </style>
 </head>
 
-<body>
+<body class="">
   <!-- HEADER -->
   <header class="header" id="header">
 
@@ -149,17 +246,17 @@
 
       <div class="list list-right">
         <button class="btn place-items-center" id="theme-toggle-btn">
-          <i class="icon icon-sun sun-line"></i>
-          <i class="icon icon-moon moon-line"></i>
+          <i class="icon i-sun sun-line"></i>
+          <i class="icon i-moon moon-line"></i>
         </button>
 
         <button class="btn place-items-center" id="search-icon">
-          <i class="icon icon-search"></i>
+          <i class="icon i-search"></i>
         </button>
 
         <button class="btn place-items-center screen-lg-hidden menu-toggle-icon" id="menu-toggle-icon">
-          <i class="icon icon-bars open-menu-icon"></i>
-          <i class="icon icon-xmark close-menu-icon"></i>
+          <i class="icon i-bars open-menu-icon"></i>
+          <i class="icon i-xmark close-menu-icon"></i>
         </button>
 
         <a href="#" class="list-link screen-sm-hidden">Sign in</a>
